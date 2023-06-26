@@ -191,7 +191,17 @@ done
 install_tmux_config
 install_vim_plugin_taglist
 install_vim_plugin
+
+# vimrc update
 install_tool_config "${HOME}" "config/.vimrc"
+if [ -f ~/bin/ctags ]; then
+        sed -e 's/CSCOPE_PROGRAM_WHICH/~\/bin\/cscope/g' \
+                -e 's/CTAGS_PROGRAM_WHICH/~\/bin\/ctags/g' config/.vimrc > ~/.vimrc
+else
+        sed -e 's/CSCOPE_PROGRAM_WHICH/\/usr\/bin\/cscope/g' \
+                -e 's/CTAGS_PROGRAM_WHICH/\/usr\/local\/bin\/ctags/g' config/.vimrc > ~/.vimrc
+fi
+
 add_bashrc_execute_enviroement
 install_shell_script_cmd
 add_bashrc_alias
