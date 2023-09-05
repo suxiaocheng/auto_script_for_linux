@@ -73,10 +73,12 @@ install_tmux_config(){
 		tmux_version=`tmux -V|tmux -V|awk '{print $2}'|tr -d 'a-z'`
 		version_cmp $tmux_version 2.3
 		if [[ ! "$?" -eq 2 ]]; then
-		        CONFIG_FILE=${CONFIG_FILE}"_2.6"
+		        SOURCE_FILE=${CONFIG_FILE}"_2.6"
+		else
+		        SOURCE_FILE=${CONFIG_FILE}
 		fi
 		if [ -f "config/${CONFIG_FILE}" ]; then
-			cp config/${CONFIG_FILE} ${HOME}
+			cp config/${SOURCE_FILE} ${HOME}/${CONFIG_FILE}
 			chmod 0777 ${HOME}/${CONFIG_FILE}
 		fi
 	fi
