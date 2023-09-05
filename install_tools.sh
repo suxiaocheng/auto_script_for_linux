@@ -65,6 +65,10 @@ check_and_install_binary() {
 install_tmux_config(){
 	TMUX_PROGRAM=`which tmux`
 	CONFIG_FILE=".tmux.conf"
+	# install plugin
+	if [ ! -d ~/.tmux/plugins/tpm ] ; then
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	fi
 	if [ ! -z ${TMUX_PROGRAM} ]; then
 		tmux_version=`tmux -V|tmux -V|awk '{print $2}'|tr -d 'a-z'`
 		version_cmp $tmux_version 2.3

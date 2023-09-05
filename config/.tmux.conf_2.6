@@ -30,3 +30,15 @@ set-window-option -g window-status-current-format '#[fg=cyan,bold]#I#[fg=blue]:#
 # 右下角
 set -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
 
+# save-restore plugin
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+set -g @continuum-save-interval '15'
+set -g @continuum-restore 'on'
+set -g @resurrect-capture-pane-contents 'on'
+
+# Other config ...
+run -b '~/.tmux/plugins/tpm/tpm'
+
